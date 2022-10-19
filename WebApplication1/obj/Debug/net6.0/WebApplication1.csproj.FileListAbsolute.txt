@@ -25,3 +25,5 @@ C:\Users\sammy\Documents\GitHub\asptesting\League\WebApplication1\obj\Debug\net6
 C:\Users\sammy\Documents\GitHub\asptesting\League\WebApplication1\obj\Debug\net6.0\WebApplication1.pdb
 C:\Users\sammy\Documents\GitHub\asptesting\League\WebApplication1\obj\Debug\net6.0\WebApplication1.genruntimeconfig.cache
 C:\Users\sammy\Documents\GitHub\asptesting\League\WebApplication1\obj\Debug\net6.0\ref\WebApplication1.dll
+C:\Users\sammy\Documents\GitHub\asptesting\League\WebApplication1\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\sammy\Documents\GitHub\asptesting\League\WebApplication1\bin\Debug\net6.0\config.json

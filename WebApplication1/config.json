@@ -1,0 +1,14 @@
+{
+  "SqlServer": {
+    "ServerName": "SAMTRAY",
+    "Database": "League2022",
+    "User": "sa",
+    "Password": "123"
+  },
+  "Root":  "https://localhost:7177/assets/",
+  "Files": {
+    "Logos": "logos/",
+    "Player":  "players/"
+  }
+
+}

@@ -1,4 +1,6 @@
 using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+StreamReader sr = new StreamReader("config.json");
+string json = sr.ReadToEnd();
+Config.Configuration = JsonConvert.DeserializeObject<Config>(json);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,20 +24,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseStaticFiles();// For the wwwroot folder
-
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), "Assets")),
-    RequestPath = "/Assets"
-});
-//Enable directory browsing
-app.UseDirectoryBrowser(new DirectoryBrowserOptions
-{
-    FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), "Assets")),
-    RequestPath = "/Assets"
+           Path.Combine(builder.Environment.ContentRootPath, "Assets")),
+    RequestPath = "/assets"
 });
 
 app.UseHttpsRedirection();
@@ -41,3 +38,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+

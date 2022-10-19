@@ -10,7 +10,7 @@
     public string Id { get => _id; set => _id = value; }
     public string Name { get => _name; set => _name = value; }
 
-    public string Logo { get => _logo; set => _logo = value; }
+    public string Logo { get => Config.Configuration.Root + Config.Configuration.Files.Logos + _logo; set => _logo = value; }
 
     #endregion
 
@@ -40,9 +40,9 @@
     {
         List<Team> list = new List<Team>();
 
-        list.Add(new Team("CHV", "Chivas", "https://localhost:7177/assets/chivas.png"));
-        list.Add(new Team("AME", "America", "https://localhost:7177/assets/america.png"));
-        list.Add(new Team("CRZ", "Cruz Azul", "https://localhost:7177/assets/cruzazul.png"));
+        list.Add(new Team("CHV", "Chivas", "chivas.png"));
+        list.Add(new Team("AME", "America", "america.png"));
+        list.Add(new Team("CRZ", "Cruz Azul", "cruzazul.png"));
 
         return list;
     }
