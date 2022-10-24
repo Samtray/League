@@ -1,10 +1,16 @@
 ﻿
-    public class Field
-    {
+using System.Data.SqlClient;
+
+public class Field
+{
+    #region sql statements
+        private static string select = "select id, name from fields";
+        #endregion
+
         #region attributes
         private string _id;
-        private string _name;
-        #endregion
+            private string _name;
+            #endregion
 
         #region properties
         public string Id { get => _id; set => _id = value; }
@@ -31,14 +37,9 @@
         #endregion
 
         #region class methods
-        public static List<Field> GetAll() { 
-            List<Field> list = new List<Field>();
-
-            list.Add(new Field("MF", "Main Field"));
-            list.Add(new Field("F2", "Field 2"));
-            list.Add(new Field("F3", "Field 3"));
-
-            return list;
+        public static List<Field> GetAll() {
+            SqlCommand command = new SqlCommand(select + " order by name");
+            return FieldMapper.ToList(SqlServerConnection.ExecuteQuery(command));
         }
         #endregion
 

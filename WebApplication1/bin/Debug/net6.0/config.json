@@ -1,7 +1,7 @@
 {
   "SqlServer": {
     "ServerName": "SAMTRAY",
-    "Database": "League2022",
+    "Database": "league2022",
     "User": "sa",
     "Password": "123"
   },
@@ -9,6 +9,12 @@
   "Files": {
     "Logos": "logos/",
     "Player":  "players/"
+  },
+  "Format": {
+    "Date": "yyyy-MM-dd",
+    "Time": "hh:mm"
+  },
+  "Paths": {
+    "Local":  "/Errors"
   }
-
 }

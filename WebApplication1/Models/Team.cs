@@ -1,5 +1,11 @@
-﻿    public class Team
+﻿using System.Data;
+using System.Data.SqlClient;    
+public class Team
     {
+    #region sql statements
+    private static string select = "select id, name, logo from teams";
+    #endregion
+
     #region attributes
     private string _id;
     private string _name;
@@ -38,13 +44,8 @@
     #region class methods
     public static List<Team> GetAll()
     {
-        List<Team> list = new List<Team>();
-
-        list.Add(new Team("CHV", "Chivas", "chivas.png"));
-        list.Add(new Team("AME", "America", "america.png"));
-        list.Add(new Team("CRZ", "Cruz Azul", "cruzazul.png"));
-
-        return list;
+        SqlCommand command = new SqlCommand(select + " order by name");
+        return TeamMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
     #endregion
 }

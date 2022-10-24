@@ -1,5 +1,10 @@
-﻿    public class Week
+﻿using System.Data.SqlClient;
+
+public class Week
     {
+    #region sql statements
+    private static string select = "select id, date, status from weeks";
+    #endregion
     #region attributes
     private int _id;
     private DateTime _date;
@@ -10,7 +15,10 @@
 
     #region properties
     public int Id { get => _id; set => _id = value; }
-    public DateTime Date { get => _date; }
+    public DateTime SetDate { set => _date = value; }
+    public Date Date { get => new Date(_date); }
+    public int SetStatus { set => _status = value; }
+
     public string Status { get => ((Status)_status).ToString(); }
 
 
@@ -33,12 +41,9 @@
     #endregion
 
     #region instance methods
-    public static List<Week> GetAll() { 
-        List<Week> list = new List<Week>();
-        list.Add(new Week(1, new DateTime(2022 - 10 - 9), 2));
-        list.Add(new Week(2, new DateTime(2022 - 10 - 16), 1));
-        list.Add(new Week(3, new DateTime(2022 - 10 - 22), 0));
-        return list;
+    public static List<Week> GetAll() {
+        SqlCommand command = new SqlCommand(select + " order by date");
+        return WeekMapper.ToList(SqlServerConnection.ExecuteQuery(command));
     }
     # endregion
 }
