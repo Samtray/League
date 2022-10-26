@@ -29,5 +29,15 @@ public class Convert
         }
         return value;
     }
+
+    public static TimeSpan ToTime(DataRow row, string fieldName)
+    {
+        TimeSpan value = new TimeSpan();
+        if (row[fieldName] != DBNull.Value)
+        {
+            return (TimeSpan)row[fieldName];
+        }
+        return value;
+    }
 }
 

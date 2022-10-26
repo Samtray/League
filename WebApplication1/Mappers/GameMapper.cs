@@ -4,13 +4,14 @@ public class GameMapper
     {
         public static Game ToObject(DataRow row) { 
             Game game = new Game();
-            game.Id = Convert.ToInt(row, "gameId");
-            game.Field = FieldMapper.ToObject(row, new string[] { "fieldId", "fieldName" });
-            game.Week = WeekMapper.ToObject(row, new string[] { "weekId", "weekDate", "weekStatus" });
-            game.Home = TeamMapper.ToObject(row, new string[] { "homeId", "homeName", "homeLogo" });
-            game.HomeScore = Convert.ToInt(row, "homeScore");
-            game.Visitor = TeamMapper.ToObject(row, new string[] { "visitorId", "visitorName", "visitorLogo" });
-            game.VisitorScore = Convert.ToInt(row, "visitorScore");
+            game.Id = Convert.ToInt(row, "id");
+            game.Time = Convert.ToTime(row, "time");
+            game.Field = FieldMapper.ToObject(row, new string[] { "idField", "fieldName" });
+            game.Week = WeekMapper.ToObject(row, new string[] { "idWeek", "date", "status" });
+            game.Home = TeamMapper.ToObject(row, new string[] { "idTeamHome", "homeName", "homeLogo" });
+            game.HomeScore = Convert.ToInt(row, "scoreHome");
+            game.Visitor = TeamMapper.ToObject(row, new string[] { "idTeamVisitor", "visitorName", "visitorLogo" });
+            game.VisitorScore = Convert.ToInt(row, "scoreVisitor");
             game.SetStatus = Convert.ToInt(row, "status");
             return game;
         }

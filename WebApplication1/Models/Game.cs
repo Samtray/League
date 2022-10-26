@@ -1,9 +1,10 @@
 ﻿using System.Data.SqlClient;
+using System.Net.NetworkInformation;
 using System.Text.Json;
 public class Game
 {
     #region sql statements
-    private static string select = "select * from getGames";
+    private static string select = "select * from VW_getGames";
     #endregion
 
     #region attributes
@@ -15,6 +16,7 @@ public class Game
     private Team _visitor;
     private int _visitorScore;
     private int _status;
+    private TimeSpan _time;
     #endregion
 
     #region properties
@@ -26,8 +28,9 @@ public class Game
     public Team Visitor { get => _visitor; set => _visitor = value; }
     public int VisitorScore { get => _visitorScore; set => _visitorScore = value; }
     public int SetStatus { set => _status = value; }
-
     public string Status { get => ((Status)_status).ToString(); }
+    public TimeSpan Time { get => _time; set => _time = value; }
+
 
     #endregion
 
@@ -58,6 +61,16 @@ public class Game
     #endregion
 
     #region class methods
+
+    public static int Finish(int id, int scoreVisitor, int scoreHome) {
+        string statement = "spFinishGame";
+        SqlCommand command = new SqlCommand(statement);
+        command.Parameters.AddWithValue("@idGame", id);
+        command.Parameters.AddWithValue("@scoreVisitor", scoreVisitor);
+        command.Parameters.AddWithValue("@scoreHome", scoreHome);
+        return SqlServerConnection.ExecuteProcedure(command);
+    }
+
     public static List<Game> GetAll()
     {
         SqlCommand command = new SqlCommand(select);

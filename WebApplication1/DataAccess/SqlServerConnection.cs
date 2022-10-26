@@ -120,7 +120,7 @@ public class SqlServerConnection
             connection.Open();
             command.Connection = connection;
             command.CommandType = CommandType.StoredProcedure;
-            SqlParameter returnParameter = new SqlParameter("@result", SqlDbType.Int);
+            SqlParameter returnParameter = new SqlParameter("@status", SqlDbType.Int);
             returnParameter.Direction = ParameterDirection.Output;
             command.Parameters.Add(returnParameter);
             command.ExecuteNonQuery();
