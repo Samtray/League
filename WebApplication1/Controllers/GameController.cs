@@ -52,10 +52,16 @@ namespace WebApplication1.Controllers
 
             FinishGameViewModel vm = new FinishGameViewModel();
 
+
             if (!string.IsNullOrEmpty(p.idgame.ToString()) &&
                 !string.IsNullOrEmpty(p.scorevisitor.ToString()) &&
-                !string.IsNullOrEmpty(p.scorehome.ToString())) {
+                !string.IsNullOrEmpty(p.scorehome.ToString()))
+            {
                 vm.Status = Game.Finish(p.idgame, p.scorevisitor, p.scorehome);
+                vm.Message = Enum.GetName(typeof(FinishGameEnum), vm.Status);
+            }
+            else {
+                vm.Status = 999;
                 vm.Message = Enum.GetName(typeof(FinishGameEnum), vm.Status);
             }
 
